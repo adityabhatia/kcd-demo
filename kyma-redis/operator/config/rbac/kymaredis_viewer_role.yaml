@@ -1,0 +1,27 @@
+# permissions for end users to view kymaredis.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: kymaredis-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: kyma-redis
+    app.kubernetes.io/part-of: kyma-redis
+    app.kubernetes.io/managed-by: kustomize
+  name: kymaredis-viewer-role
+rules:
+- apiGroups:
+  - operator.kyma-project.io
+  resources:
+  - kymaredis
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - operator.kyma-project.io
+  resources:
+  - kymaredis/status
+  verbs:
+  - get

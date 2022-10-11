@@ -1,0 +1,11 @@
+apiVersion: operator.kyma-project.io/v1alpha1
+kind: Kyma
+metadata:
+  name: kyma-sample
+  namespace: kyma-system
+spec:
+  channel: stable
+  sync:
+    enabled: true
+  modules:
+    - name: kyma-redis

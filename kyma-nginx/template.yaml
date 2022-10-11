@@ -1,0 +1,50 @@
+apiVersion: operator.kyma-project.io/v1alpha1
+kind: ModuleTemplate
+metadata:
+  name: moduletemplate-kyma-nginx
+  namespace: kcp-system
+  labels:
+    "operator.kyma-project.io/managed-by": "lifecycle-manager"
+    "operator.kyma-project.io/controller-name": "manifest"
+    "operator.kyma-project.io/module-name": "kyma-nginx"
+  annotations:
+    "operator.kyma-project.io/module-version": "0.0.1"
+    "operator.kyma-project.io/module-provider": "internal"
+    "operator.kyma-project.io/descriptor-schema-version": "v2"
+spec:
+  target: remote
+  channel: stable
+  data:
+    apiVersion: operator.kyma-project.io/v1alpha1
+    kind: KymaNginx
+    metadata:
+      labels:
+        app.kubernetes.io/name: kymanginx
+        app.kubernetes.io/instance: kymanginx-sample
+        app.kubernetes.io/part-of: kyma-nginx
+        app.kuberentes.io/managed-by: kustomize
+        app.kubernetes.io/created-by: kyma-nginx
+      name: kymanginx-sample
+    spec:
+      releaseName: kcd-demo
+  descriptor:
+    component:
+      componentReferences: []
+      name: kyma.project.io/module/kyma-nginx
+      provider: internal
+      repositoryContexts:
+      - baseUrl: europe-west3-docker.pkg.dev/sap-kyma-jellyfish-dev/operator-demo
+        componentNameMapping: urlPath
+        type: ociRegistry
+      resources:
+      - access:
+          digest: sha256:ffa96046483bb6c47699d4378cccd8710efca71f0aaba96c342a6eddd71134e4
+          type: localOciBlob
+        name: kyma-nginx-operator
+        relation: local
+        type: helm-chart
+        version: 0.0.1
+      sources: []
+      version: 0.0.1
+    meta:
+      schemaVersion: v2

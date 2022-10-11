@@ -1,0 +1,12 @@
+apiVersion: operator.kyma-project.io/v1alpha1
+kind: KymaNginx
+metadata:
+  labels:
+    app.kubernetes.io/name: kymanginx
+    app.kubernetes.io/instance: kymanginx-sample
+    app.kubernetes.io/part-of: kyma-nginx
+    app.kuberentes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: kyma-nginx
+  name: kymanginx-sample
+spec:
+  releaseName: kcd-demo

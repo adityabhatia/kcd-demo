@@ -1,0 +1,12 @@
+apiVersion: operator.kyma-project.io/v1alpha1
+kind: KymaRedis
+metadata:
+  labels:
+    app.kubernetes.io/name: kymaredis
+    app.kubernetes.io/instance: kymaredis-sample
+    app.kubernetes.io/part-of: kyma-redis
+    app.kuberentes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: kyma-redis
+  name: kymaredis-sample
+spec:
+  releaseName: kcd-demo

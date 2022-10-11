@@ -1,0 +1,16 @@
+domain: kyma-project.io
+layout:
+- go.kubebuilder.io/v4-alpha
+projectName: kyma-redis
+repo: github.com/adityabhatia/kcd-demo/kyma-redis
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: kyma-project.io
+  group: operator
+  kind: KymaRedis
+  path: github.com/adityabhatia/kcd-demo/kyma-redis/api/v1alpha1
+  version: v1alpha1
+version: "3"

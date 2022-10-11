@@ -1,0 +1,50 @@
+apiVersion: operator.kyma-project.io/v1alpha1
+kind: ModuleTemplate
+metadata:
+  name: moduletemplate-kyma-redis
+  namespace: kcp-system
+  labels:
+    "operator.kyma-project.io/managed-by": "lifecycle-manager"
+    "operator.kyma-project.io/controller-name": "manifest"
+    "operator.kyma-project.io/module-name": "kyma-redis"
+  annotations:
+    "operator.kyma-project.io/module-version": "0.0.1"
+    "operator.kyma-project.io/module-provider": "internal"
+    "operator.kyma-project.io/descriptor-schema-version": "v2"
+spec:
+  target: remote
+  channel: stable
+  data:
+    apiVersion: operator.kyma-project.io/v1alpha1
+    kind: KymaRedis
+    metadata:
+      labels:
+        app.kubernetes.io/name: kymaredis
+        app.kubernetes.io/instance: kymaredis-sample
+        app.kubernetes.io/part-of: kyma-redis
+        app.kuberentes.io/managed-by: kustomize
+        app.kubernetes.io/created-by: kyma-redis
+      name: kymaredis-sample
+    spec:
+      releaseName: kcd-demo
+  descriptor:
+    component:
+      componentReferences: []
+      name: kyma.project.io/module/kyma-redis
+      provider: internal
+      repositoryContexts:
+      - baseUrl: europe-west3-docker.pkg.dev/sap-kyma-jellyfish-dev/operator-demo
+        componentNameMapping: urlPath
+        type: ociRegistry
+      resources:
+      - access:
+          digest: sha256:cd98ce9b440fef2e1d11fe382ccf6fab971f516efa9ee174d73209777ed318b5
+          type: localOciBlob
+        name: kyma-redis-operator
+        relation: local
+        type: helm-chart
+        version: 0.0.1
+      sources: []
+      version: 0.0.1
+    meta:
+      schemaVersion: v2

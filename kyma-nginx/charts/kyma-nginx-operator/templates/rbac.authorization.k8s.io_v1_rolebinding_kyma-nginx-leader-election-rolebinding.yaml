@@ -1,0 +1,20 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  labels:
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: kyma-nginx
+    app.kubernetes.io/instance: leader-election-rolebinding
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: rolebinding
+    app.kubernetes.io/part-of: kyma-nginx
+  name: kyma-nginx-leader-election-rolebinding
+  namespace: kyma-nginx-system
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: kyma-nginx-leader-election-role
+subjects:
+- kind: ServiceAccount
+  name: kyma-nginx-controller-manager
+  namespace: kyma-nginx-system
